@@ -1,6 +1,6 @@
 #
 # This file is part of the Geometry library.
-# Copyright (C) 2010-2015 Benjamin Eikel <benjamin@eikel.org>
+# Copyright (C) 2010-2017 Benjamin Eikel <benjamin@eikel.org>
 #
 # This library is subject to the terms of the Mozilla Public License, v. 2.0.
 # You should have received a copy of the MPL along with this library; see the 
@@ -27,7 +27,6 @@ if(GEOMETRY_BUILD_TESTS)
 		StandardLayout.cpp
 		TetrahedronTest.cpp
 		TriangleTest.cpp
-		Vec3Test.cpp
 		VecHelperTest.cpp
 		VecNTest.cpp
 		GeometryTestMain.cpp
@@ -66,4 +65,18 @@ if(GEOMETRY_BUILD_TESTS)
 	add_test(NAME Vec3Test COMMAND GeometryTest Vec3Test)
 	add_test(NAME VecHelperTest COMMAND GeometryTest VecHelperTest)
 	add_test(NAME VecNTest COMMAND GeometryTest VecNTest)
+
+	add_executable(GeometryTestCatch2
+		Vec3Test.cpp
+	)
+
+	target_link_libraries(GeometryTestCatch2 PRIVATE Geometry)
+
+
+	# Dependency to Catch2
+	set(CATCH_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../external/Catch2/single_include)
+	add_library(Catch2 INTERFACE)
+	target_include_directories(Catch2 INTERFACE ${CATCH_INCLUDE_DIR})
+
+	target_link_libraries(GeometryTestCatch2 PRIVATE Catch2)
 endif()
