@@ -62,7 +62,6 @@ if(GEOMETRY_BUILD_TESTS)
 	add_test(NAME SphereTest COMMAND GeometryTest SphereTest)
 	add_test(NAME TetrahedronTest COMMAND GeometryTest TetrahedronTest)
 	add_test(NAME TriangleTest COMMAND GeometryTest TriangleTest)
-	add_test(NAME Vec3Test COMMAND GeometryTest Vec3Test)
 	add_test(NAME VecHelperTest COMMAND GeometryTest VecHelperTest)
 	add_test(NAME VecNTest COMMAND GeometryTest VecNTest)
 
@@ -79,4 +78,6 @@ if(GEOMETRY_BUILD_TESTS)
 	target_include_directories(Catch2 INTERFACE ${CATCH_INCLUDE_DIR})
 
 	target_link_libraries(GeometryTestCatch2 PRIVATE Catch2)
+
+	add_test(NAME Vec3Test COMMAND GeometryTestCatch2 '[Geometry][Vec3]')
 endif()
